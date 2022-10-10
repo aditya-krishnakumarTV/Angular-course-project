@@ -1,1 +1,23 @@
-<p>recipe-list works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <button mat-raised-button color="primary">New Recipe</button>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col-xs-12">
+    <mat-card class="recipe-card" *ngFor="let item of recipe">
+      <a href="#">
+        <mat-card-header>
+          <mat-card-title>{{ item.name }}</mat-card-title>
+        </mat-card-header>
+      </a>
+      <img mat-card-image [src]="item.imagePath" alt="{{ item.name }}" />
+      <mat-card-content>
+        <p>{{ item.desc }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <app-recipe-item></app-recipe-item>
+  </div>
+</div>

@@ -1,1 +1,37 @@
-<p>recipe-detail works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <img src="" alt="" class="img-responsive" />
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Recipe Name</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+      Manage Recipe
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>info</mat-icon>
+        <span>To Shopping List</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit Recipe</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete Recipe</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">Description</div>
+</div>
+<div class="row">
+  <div class="col-xs-12">Ingredients</div>
+</div>
