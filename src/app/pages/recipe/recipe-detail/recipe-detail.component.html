@@ -9,18 +9,24 @@
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="col-xs-12">
     <h1>{{ recipe.name }}</h1>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-xs-12">{{ recipe.desc }}</div>
+</div>
+
 <div class="row">
   <div class="col-xs-12">
     <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
       Manage Recipe
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item (click)="sendToShoppingList()">
         <mat-icon>info</mat-icon>
         <span>To Shopping List</span>
       </button>
@@ -35,9 +41,13 @@
     </mat-menu>
   </div>
 </div>
-<div class="row">
-  <div class="col-xs-12">{{ recipe.desc }}</div>
-</div>
-<div class="row">
-  <div class="col-xs-12">Ingredients</div>
+
+<div class="row" *ngFor="let item of recipe.ingredient">
+  <div class="col-xs-12">
+    <mat-selection-list [multiple]="false">
+      <mat-list-option>
+        <a style="cursor: pointer"> {{ item.name }} ({{ item.amount }}) </a>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
 </div>

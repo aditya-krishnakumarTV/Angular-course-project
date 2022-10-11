@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 import { RecipeComponent } from './recipe.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
@@ -20,6 +21,7 @@ import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.compo
   ],
   imports: [
     CommonModule,
+    MatListModule,
     MatCardModule,
     MatButtonModule,
     MatMenuModule,
