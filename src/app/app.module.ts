@@ -17,8 +17,8 @@ import { ShoppingListModule } from './pages/shopping-list/shopping-list.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    
     ComponentsModule,
-
     RecipeModule,
     ShoppingListModule
   ],
