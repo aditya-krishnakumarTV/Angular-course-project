@@ -38,7 +38,8 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
     RecipeListComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
-    RecipeStartComponent
+    RecipeStartComponent,
+    RecipeEditComponent
   ]
 })
 export class RecipeModule { }
