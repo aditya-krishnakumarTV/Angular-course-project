@@ -10,10 +10,12 @@ const appRoutes: Routes = [
     { path: '', redirectTo: '/recipe', pathMatch: 'full' },
 
     { path: 'shopping-list', component: ShoppingListComponent },
-    { path: 'recipe', component: RecipeComponent, children:[
-        {path: '', component: RecipeStartComponent},
-        {path: ':id', component: RecipeDetailComponent}
-    ] },
+    {
+        path: 'recipe', component: RecipeComponent, children: [
+            { path: '', component: RecipeStartComponent },
+            { path: ':id', component: RecipeDetailComponent }
+        ]
+    },
 ]
 
 @NgModule({

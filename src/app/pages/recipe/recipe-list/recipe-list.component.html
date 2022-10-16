@@ -4,8 +4,8 @@
   </div>
 </div>
 <br />
-<div class="row recipe-item" *ngFor="let item of recipe">
+<div class="row recipe-item" *ngFor="let item of recipe; let i = index">
   <div class="col-xs-12">
-    <app-recipe-item [recipe]="item"></app-recipe-item>
+    <app-recipe-item [recipe]="item" [index]="i"></app-recipe-item>
   </div>
 </div>

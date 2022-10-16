@@ -1,4 +1,4 @@
-<mat-card class="recipe-card" (click)="onSelectedRecipe()">
+<mat-card class="recipe-card" [routerLink]="[index]">
   <mat-card-header>
     <mat-card-title>{{ recipe.name }}</mat-card-title>
   </mat-card-header>
