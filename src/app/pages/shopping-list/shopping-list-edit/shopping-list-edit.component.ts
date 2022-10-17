@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { ShoppingListService } from 'src/app/services/shopping-list.service';
 
@@ -14,9 +15,17 @@ export class ShoppingListEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAddIngredient() {
-    const ing = { name: 'Bread', amount: 3 }
+  onAddIngredient(form: NgForm) {
+    if(form.invalid){
+      return
+    }
+    console.log(form)
+    const ing = { name: form.value.name, amount: form.value.amount }
     this.shoppingListService.addIngredient(ing)
+  }
+
+  clearForm(form: NgForm){
+    form.reset()
   }
 
 }
