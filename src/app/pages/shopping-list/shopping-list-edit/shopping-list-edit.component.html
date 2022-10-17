@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form class="form" #ingForm="ngForm" (ngSubmit)="onAddIngredient(ingForm)">
+    <form class="form" #ingForm="ngForm" (ngSubmit)="onSubmit(ingForm)">
       <div class="row">
         <div class="col-sm-3">
           <mat-form-field class="field-full-width" appearance="outline">
@@ -14,7 +14,9 @@
               #name="ngModel"
               required
             />
-            <mat-error *ngIf="name.invalid && name.touched">Please enter name!</mat-error>
+            <mat-error *ngIf="name.invalid && name.touched"
+              >Please enter name!</mat-error
+            >
           </mat-form-field>
         </div>
 
@@ -31,7 +33,9 @@
               required
               pattern="^[1-9]+[0-9]*$"
             />
-            <mat-error *ngIf="amount.invalid && amount.touched">Please enter amount!</mat-error>
+            <mat-error *ngIf="amount.invalid && amount.touched"
+              >Please enter amount!</mat-error
+            >
           </mat-form-field>
         </div>
       </div>
@@ -45,13 +49,15 @@
             type="submit"
             [disabled]="!ingForm.valid"
           >
-            Add
+            {{ editMode ? "Update" : "Add" }}
           </button>
           <button
             mat-raised-button
             color="warn"
             class="button-list"
             type="button"
+            (click)="onDeleteIng()"
+            *ngIf="editMode"
           >
             Delete
           </button>
@@ -59,7 +65,7 @@
             mat-raised-button
             class="button-list"
             type="button"
-            (click)="clearForm(ingForm)"
+            (click)="clearForm()"
           >
             Clear
           </button>

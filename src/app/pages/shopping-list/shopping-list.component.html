@@ -2,8 +2,11 @@
   <div class="col-xs-12">
     <app-shopping-list-edit></app-shopping-list-edit>
     <hr />
-    <mat-selection-list [multiple]="false" *ngFor="let item of ingredients">
-      <mat-list-option>
+    <mat-selection-list
+      [multiple]="false"
+      *ngFor="let item of ingredients; let i = index"
+    >
+      <mat-list-option (click)="onEditIngredient(i)">
         <a style="cursor: pointer"> {{ item.name }} ({{ item.amount }}) </a>
       </mat-list-option>
     </mat-selection-list>
