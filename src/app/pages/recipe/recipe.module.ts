@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { RecipeComponent } from './recipe.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
@@ -26,12 +29,15 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
     MatListModule,
     MatCardModule,
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    RouterModule
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     RecipeComponent,

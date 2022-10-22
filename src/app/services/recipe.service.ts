@@ -43,6 +43,14 @@ export class RecipeService {
         return this.recipe[index]
     }
 
+    addRecipe(newReci: Recipe) {
+        this.recipe.push(newReci)
+    }
+
+    updateRecipe(newReci: Recipe, index: number) {
+        this.recipe.splice(index, 1, newReci)
+    }
+
     addIngredientToShoppingList(ingre: Ingredient[]) {
         this.shoppingListService.fromRecipeToShoppingList(ingre)
     }

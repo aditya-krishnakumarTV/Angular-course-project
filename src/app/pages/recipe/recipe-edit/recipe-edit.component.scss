@@ -1,0 +1,36 @@
+.field-full-width {
+    margin-top: 5px;
+    width: 100%;
+}
+  
+.button-list{
+    margin: 5px;
+}
+
+// .row{
+//     padding: 5px 0;
+// }
+  
+.responsive {
+    padding: 10px 0;
+    float: left;
+    width: 50%;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+  
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
