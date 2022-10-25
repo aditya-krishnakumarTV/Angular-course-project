@@ -17,6 +17,7 @@
             color="warn"
             class="button-list"
             type="button"
+            (click)="onCancel()"
           >
             Cancel
           </button>
@@ -114,7 +115,7 @@
                 class="button-list"
                 color="warn"
                 type="button"
-                (click)="deleteIngredient(ingreControl, i)"
+                (click)="deleteIngredient(i)"
               >
                 X
               </button>
