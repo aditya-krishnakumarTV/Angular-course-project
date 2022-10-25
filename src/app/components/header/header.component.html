@@ -39,11 +39,11 @@
       </button>
 
       <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="onSave()">
           <mat-icon>save</mat-icon>
           <span>Save Data</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="onFetch()">
           <mat-icon>call_received</mat-icon>
           <span>Fetch Data</span>
         </button>
