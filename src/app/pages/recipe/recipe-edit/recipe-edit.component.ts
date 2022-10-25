@@ -4,6 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { RecipeService } from 'src/app/services/recipe.service';
 
+import { Recipe } from 'src/app/shared/recipe.model';
+
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
@@ -46,38 +48,65 @@ export class RecipeEditComponent implements OnInit {
 
   private onEditInitForm() {
     this.recipeForm = this.fb.group({
-      'name': ['', [Validators.required]],
-      'imageUrl': ['', [Validators.required]],
-      'description': ['', [Validators.required]],
+      'name': [null, [Validators.required]],
+      'description': [null, [Validators.required]],
+      'imageUrl': [null, [Validators.required]],
       'ingredients': this.fb.array([])
     })
 
     if (this.editMode) {
       let editRecipe = this.recipeService.getRecipeByID(this.id)
 
+      //Used patch because of fb and the form is already initialised and we are pushing the ingredients direct into the array
+      this.recipeForm.patchValue({
+        'name': editRecipe.name,
+        'imageUrl': editRecipe.imagePath,
+        'description': editRecipe.desc
+      })
+
       if (editRecipe['ingredient']) {
         for (let ingre of editRecipe.ingredient) {
           this.ingredientsField.push(
             this.fb.group({
               'name': this.fb.control(ingre.name, [Validators.required]),
-              'amount': this.fb.control(ingre.amount, [Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])
+              'amount': this.fb.control(ingre.amount, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
             })
           )
         }
       }
 
-      this.recipeForm.setValue({
-        'name': editRecipe.name,
-        'imageUrl': editRecipe.imagePath,
-        'description': editRecipe.desc,
-        'ingredients': this.ingredientsField
-      })
-
     }
   }
 
   onSubmit() {
-    console.log(this.recipeForm)
+    if (!this.recipeForm.valid) {
+      return
+    }
+    const rec = new Recipe(
+      this.nameField.value,
+      this.descriptionField.value,
+      this.imageField.value,
+      this.ingredientsField.value
+    )
+    if (this.editMode) {
+      this.recipeService.updateRecipe(rec, this.id)
+    } else {
+      this.recipeService.addRecipe(rec)
+    }
+  }
+
+  onAddNewIngredient() {
+    this.ingredientsField.push(
+      new FormGroup({
+        'name': new FormControl(null, [Validators.required]),
+        'amount': new FormControl(null, [Validators.required, Validators.pattern('^[1-9]+[0-9]*$')]),
+      })
+    )
+  }
+
+  deleteIngredient(ingre: any, index: any) {
+    console.log(ingre)
+    console.log(index)
   }
 
 }

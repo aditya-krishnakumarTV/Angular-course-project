@@ -8,8 +8,9 @@
             color="primary"
             class="button-list"
             type="submit"
+            [disabled]="!recipeForm.valid"
           >
-            Save
+            {{ editMode ? "Update" : "Save" }}
           </button>
           <button
             mat-raised-button
@@ -113,8 +114,23 @@
                 class="button-list"
                 color="warn"
                 type="button"
+                (click)="deleteIngredient(ingreControl, i)"
               >
                 X
+              </button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <button
+                mat-raised-button
+                class="button-list"
+                color="primary"
+                type="button"
+                (click)="onAddNewIngredient()"
+              >
+                Add Ingredient
               </button>
             </div>
           </div>
