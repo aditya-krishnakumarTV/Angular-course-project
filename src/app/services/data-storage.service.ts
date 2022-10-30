@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map } from "rxjs";
+import { map, tap } from "rxjs";
 
 import { Recipe } from "../shared/recipe.model";
 
@@ -25,15 +25,20 @@ export class DataStorageService {
     }
 
     fetchRecipes() {
-        this.http.get<Array<Recipe>>('https://angular-course-project-176a4-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json')
+        return this.http.get<Array<Recipe>>('https://angular-course-project-176a4-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json')
             .pipe(map(recipes => {
+                // map is like Array.map but it returns an Observable
                 return recipes.map(recipe => {
+                    // simple Array.map
                     return { ...recipe, ingredient: recipe.ingredient ? recipe.ingredient : [] }
                 })
-            }))
-            .subscribe(value => {
-                this.recipeService.setRecipes(value)
-            })
+            }),
+                tap(value => {
+                    // tap helps to carry put some code function without actually changing it
+                    // The tap operator allows us to execute some code here in place without altering the data that is funneled through that observable.
+                    this.recipeService.setRecipes(value)
+                })
+            )
     }
 
 }
