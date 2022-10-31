@@ -33,7 +33,7 @@
               type="text"
               name="name"
               id="name"
-              placeholder="Name"
+              placeholder="Enter Name"
               formControlName="name"
             />
           </mat-form-field>
@@ -49,7 +49,7 @@
               type="text"
               name="imageUrl"
               id="imageUrl"
-              placeholder="ImageUrl"
+              placeholder="Enter ImageUrl"
               formControlName="imageUrl"
             />
           </mat-form-field>
@@ -78,7 +78,7 @@
               name="description"
               id="description"
               rows="6"
-              placeholder="Description"
+              placeholder="Enter Description"
               formControlName="description"
             ></textarea>
           </mat-form-field>
@@ -98,14 +98,24 @@
             <div class="col-sm-4">
               <mat-form-field appearance="outline">
                 <mat-label>Ingredient Name</mat-label>
-                <input matInput type="text" formControlName="name" />
+                <input
+                  matInput
+                  type="text"
+                  placeholder="Enter name"
+                  formControlName="name"
+                />
               </mat-form-field>
             </div>
 
             <div class="col-sm-4">
               <mat-form-field appearance="outline">
                 <mat-label>Ingredient Amount</mat-label>
-                <input matInput type="number" formControlName="amount" />
+                <input
+                  matInput
+                  type="number"
+                  placeholder="Enter amount"
+                  formControlName="amount"
+                />
               </mat-form-field>
             </div>
 

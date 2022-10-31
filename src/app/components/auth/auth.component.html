@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+        <mat-form-field class="field-full-width" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Enter Username"
+            ngModel
+            #username="ngModel"
+            required
+          />
+          <mat-error *ngIf="username.invalid && username.touched"
+            >Please enter Username!</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="field-full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            name="passwrod"
+            id="passwrod"
+            placeholder="Enter Password"
+            ngModel
+            #password="ngModel"
+            required
+          />
+          <mat-error *ngIf="password.invalid && password.touched"
+            >Please enter Password!</mat-error
+          >
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="button-list"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          {{ isLoginMode ? "Log In" : "Sign Up" }}
+        </button>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="button-list"
+          type="button"
+          (click)="onSwitchLogin()"
+        >
+          {{ isLoginMode ? "New User?...Sign In" : "Signed Up?..Log In" }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
