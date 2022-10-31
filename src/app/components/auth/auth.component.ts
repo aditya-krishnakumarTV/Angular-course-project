@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AuthComponent implements OnInit {
 
-  @ViewChild('loginForm', { static: false }) loginForm: NgForm
+  @ViewChild('authForm', { static: false }) authForm: NgForm
 
   isLoginMode: boolean = true
 
@@ -22,6 +22,7 @@ export class AuthComponent implements OnInit {
       return
     }
     console.log(form)
+    form.reset()
   }
 
   onSwitchLogin() {
