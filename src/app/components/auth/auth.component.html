@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <div>
+        <mat-progress-spinner mode="indeterminate" color="primary" *ngIf="isLoading"></mat-progress-spinner>
+      </div>
+      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
         <mat-form-field class="field-full-width" appearance="outline">
           <mat-label>Email</mat-label>
           <input
