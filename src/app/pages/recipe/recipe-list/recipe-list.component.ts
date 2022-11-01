@@ -14,7 +14,8 @@ import { Recipe } from 'src/app/shared/recipe.model';
 export class RecipeListComponent implements OnInit, OnDestroy {
 
   recipe: Array<Recipe> = []
-  recChangedSub: Subscription
+  
+  private recChangedSub: Subscription
 
   constructor(
     private recipeService: RecipeService,

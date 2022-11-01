@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 
 import { AuthResponseData, AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +18,10 @@ export class AuthComponent implements OnInit {
   isLoginMode: boolean = true
   isLoading: boolean = false
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -46,9 +50,10 @@ export class AuthComponent implements OnInit {
           icon: 'success',
           title: 'Welcome!',
           showConfirmButton: false,
-          timer: 1500
+          timer: 2500
         })
         this.isLoading = false
+        this.router.navigate(['/recipe'])
       },
       error: (e) => {
         Swal.fire({

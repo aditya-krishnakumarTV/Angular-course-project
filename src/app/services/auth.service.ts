@@ -1,7 +1,9 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { Subject, throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+
+import { User } from "../shared/user.model";
 
 export interface AuthResponseData {
     idToken: string,
@@ -19,6 +21,8 @@ export class AuthService {
 
     private apiKey: string = 'AIzaSyBQA0mw8Gz-c9UBCoEyqHSyelP9AQlu7_M'
 
+    user: Subject<User> = new Subject<User>()
+
     constructor(private http: HttpClient) { }
 
     signUp(email: string, password: string) {
@@ -28,7 +32,12 @@ export class AuthService {
                 password: password,
                 returnSecureToken: true
             })
-            .pipe(catchError(this.errorHandler))
+            .pipe(
+                catchError(this.errorHandler),
+                tap(resData => {
+                    this.authenticationHandler(resData.email, resData.localId, resData.idToken, +resData.expiresIn)
+                })
+            )
     }
 
     signIn(email: string, password: string) {
@@ -38,7 +47,12 @@ export class AuthService {
                 password: password,
                 returnSecureToken: true
             })
-            .pipe(catchError(this.errorHandler))
+            .pipe(
+                catchError(this.errorHandler),
+                tap(resData => {
+                    this.authenticationHandler(resData.email, resData.localId, resData.idToken, +resData.expiresIn)
+                })
+            )
     }
 
     private errorHandler(errorRes: HttpErrorResponse) {
@@ -64,5 +78,18 @@ export class AuthService {
                 return errorMsg
             })
         }
+    }
+
+    private authenticationHandler(email: string, userId: string, token: string, expiresIn: number) {
+        const expirationDate = new Date(
+            new Date().getTime() + expiresIn * 1000
+        )
+        const useR = new User(
+            email,
+            userId,
+            token,
+            expirationDate
+        )
+        this.user.next(useR)
     }
 }

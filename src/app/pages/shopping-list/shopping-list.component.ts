@@ -13,7 +13,8 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
 export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ingredients: Array<Ingredient> = []
-  ingreChangedSub: Subscription = new Subscription()
+  
+  private ingreChangedSub: Subscription = new Subscription()
 
   constructor(private shoppingListService: ShoppingListService) { }
 

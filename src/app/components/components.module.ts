@@ -13,6 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { HeaderComponent } from './header/header.component';
 import { AuthComponent } from './auth/auth.component';
@@ -36,7 +37,8 @@ import { AuthComponent } from './auth/auth.component';
     MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTooltipModule
   ],
   exports: [
     HeaderComponent,

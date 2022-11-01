@@ -10,9 +10,8 @@
     <mat-toolbar>Menu</mat-toolbar>
 
     <mat-nav-list>
-      <a mat-list-item routerLink="/auth">Log In</a>
       <a mat-list-item routerLink="/shopping-list">Shopping List</a>
-      <a mat-list-item routerLink="/recipe">Recipes</a>
+      <a mat-list-item routerLink="/recipe" *ngIf="isLogedin">Recipes</a>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -30,11 +29,25 @@
 
       <span>Angular-course-project</span>
 
+      <span class="spacer"></span>
+      <!--For adding space between the header and options-->
+
+      <button
+        mat-icon-button
+        [matTooltip]="isLogedin ? 'Logout' : 'Login'"
+        routerLink="/auth"
+      >
+        <mat-icon *ngIf="!isLogedin">login</mat-icon>
+        <mat-icon *ngIf="isLogedin">logout</mat-icon>
+      </button>
+
       <button
         class="menu-button"
         mat-icon-button
         [matMenuTriggerFor]="menu"
-        aria-label="Menu"
+        aria-label="Actions"
+        matTooltip="Actions"
+        *ngIf="isLogedin"
       >
         <mat-icon>more_vert</mat-icon>
       </button>

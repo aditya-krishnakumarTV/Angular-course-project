@@ -15,7 +15,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
 
   @ViewChild('ingForm', { static: false }) shoppingListForm: NgForm
 
-  ingSubscription: Subscription = new Subscription()
+  private ingSubscription: Subscription = new Subscription()
 
   editMode: boolean = false
   editIndex: number = 0
