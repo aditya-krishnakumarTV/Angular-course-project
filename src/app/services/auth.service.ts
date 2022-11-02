@@ -21,6 +21,7 @@ export interface AuthResponseData {
 export class AuthService {
 
     private apiKey: string = 'AIzaSyBQA0mw8Gz-c9UBCoEyqHSyelP9AQlu7_M'
+    private tokenExpirationTimer: any
 
     user: BehaviorSubject<User> = new BehaviorSubject<User>(null)
 
@@ -62,6 +63,39 @@ export class AuthService {
     logout() {
         this.user.next(null)
         this.router.navigate(['/auth'])
+        localStorage.removeItem('userData')
+        if (this.tokenExpirationTimer) {
+            clearTimeout(this.tokenExpirationTimer)
+        }
+        this.tokenExpirationTimer = null
+    }
+
+    autoLogin() {
+        const userData: {
+            email: string,
+            id: string,
+            _token: string,
+            _tokeExpirationDate: string
+        } = JSON.parse(localStorage.getItem('userData'))
+
+        if (!userData) {
+            return
+        }
+
+        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokeExpirationDate))
+
+        if (loadedUser.token) {
+            this.user.next(loadedUser)
+            const expirationDuration = new Date(userData._tokeExpirationDate).getTime() - new Date().getTime()
+            this.autoLogout(expirationDuration)
+        }
+
+    }
+
+    autoLogout(expirationDuration: number) {
+        this.tokenExpirationTimer = setTimeout(() => {
+            this.logout()
+        }, expirationDuration)
     }
 
     private errorHandler(errorRes: HttpErrorResponse) {
@@ -100,5 +134,7 @@ export class AuthService {
             expirationDate
         )
         this.user.next(useR)
+        localStorage.setItem('userData', JSON.stringify(useR))
+        this.autoLogout(expiresIn * 1000)
     }
 }
