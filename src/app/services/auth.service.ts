@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { BehaviorSubject, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 
@@ -23,7 +24,10 @@ export class AuthService {
 
     user: BehaviorSubject<User> = new BehaviorSubject<User>(null)
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private router: Router
+    ) { }
 
     signUp(email: string, password: string) {
         return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + this.apiKey,
@@ -53,6 +57,11 @@ export class AuthService {
                     this.authenticationHandler(resData.email, resData.localId, resData.idToken, +resData.expiresIn)
                 })
             )
+    }
+
+    logout() {
+        this.user.next(null)
+        this.router.navigate(['/auth'])
     }
 
     private errorHandler(errorRes: HttpErrorResponse) {

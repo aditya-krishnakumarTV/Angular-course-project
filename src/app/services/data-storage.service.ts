@@ -27,17 +27,8 @@ export class DataStorageService {
     }
 
     fetchRecipes() {
-        return this.authService.user
+        return this.http.get<Array<Recipe>>('https://angular-course-project-176a4-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json')
             .pipe(
-                take(1),
-                exhaustMap(user => {
-                    return this.http.get<Array<Recipe>>(
-                        'https://angular-course-project-176a4-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json',
-                        {
-                            params: new HttpParams().set('auth', user.token)
-                        }
-                    )
-                }),
                 map(recipes => {
                     // map is like Array.map but it returns an Observable
                     return recipes.map(recipe => {
@@ -49,8 +40,7 @@ export class DataStorageService {
                     // tap helps to carry out some code function without actually changing it
                     // The tap operator allows us to execute some code here in place without altering the data that is funneled through that observable.
                     this.recipeService.setRecipes(value)
-                })
-            )
+                }))
     }
 
 }

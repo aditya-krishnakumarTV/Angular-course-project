@@ -36,6 +36,7 @@
         mat-icon-button
         [matTooltip]="isLogedin ? 'Logout' : 'Login'"
         routerLink="/auth"
+        (click)="onLogout()"
       >
         <mat-icon *ngIf="!isLogedin">login</mat-icon>
         <mat-icon *ngIf="isLogedin">logout</mat-icon>
