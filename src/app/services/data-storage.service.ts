@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map, tap } from "rxjs";
 
-import { Recipe } from "../shared/recipe.model";
+import { Recipe } from "../models/recipe.model";
 
 import { RecipeService } from "./recipe.service";
 

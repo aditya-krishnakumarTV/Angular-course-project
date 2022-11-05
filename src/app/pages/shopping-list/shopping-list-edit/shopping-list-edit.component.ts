@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { ShoppingListService } from 'src/app/services/shopping-list.service';
 
-import { Ingredient } from 'src/app/shared/ingredient.model';
+import { Ingredient } from 'src/app/models/ingredient.model';
 
 @Component({
   selector: 'app-shopping-list-edit',
