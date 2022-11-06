@@ -10,6 +10,10 @@ const appRoutes: Routes = [
     {
         path: 'shopping-list',
         loadChildren: () => import('./pages/shopping-list/shopping-list.module').then(m => m.ShoppingListModule)
+    },
+    {
+        path: 'auth',
+        loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
     }
 ]
 
