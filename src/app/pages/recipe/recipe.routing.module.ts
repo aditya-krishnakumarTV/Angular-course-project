@@ -11,7 +11,7 @@ import { RecipeComponent } from "./recipe.component";
 
 const routes: Routes = [
     {
-        path: 'recipe',
+        path: '',
         component: RecipeComponent,
         canActivate: [AuthGuard],
         children: [

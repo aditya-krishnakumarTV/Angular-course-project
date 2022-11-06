@@ -7,8 +7,6 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
-import { RecipeModule } from './pages/recipe/recipe.module';
-import { ShoppingListModule } from './pages/shopping-list/shopping-list.module';
 
 import { AuthInterceptorService } from './services/auth.intercepter.service';
 
@@ -21,9 +19,7 @@ import { AuthInterceptorService } from './services/auth.intercepter.service';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    ComponentsModule,
-    RecipeModule,
-    ShoppingListModule
+    ComponentsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
